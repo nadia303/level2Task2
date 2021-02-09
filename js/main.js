@@ -23,7 +23,7 @@ const citiesInformation =
 `
 
 const text = `Львов, город с богатой историей, расположенный на западе Украины, был основан в XIII в. 
-и с тех пор много раз менял флаг: он принадлежал Польше, Австро-Венгрии и Советской империи. Во Львов 
+и с тех пор много раз менял флаг: он принадлежал Польше, Австро-Венгрии и Советской империи. Во Львове 
 организовано много городских праздников, таких как праздники кофе и шоколада, праздник сыра и вина, ежегодный день хлеба и другие. Харьков является одним из 
 крупнейших городов Украины, а также областным центром Харьковской области. `
 
@@ -58,7 +58,8 @@ function textAnalizer(citiesInformation) {
     return (text) => {
         Object.keys(arrayOfStrings).forEach(function (cityName) {
             if (text.search(cityName) > -1) {
-                text = text.replaceAll(cityName, (cityName + " (" + arrayOfStrings[cityName].rating + " место в ТОП-10 " +
+                let city = new RegExp(cityName + '(?=\\s|\\.|,|$)', 'g');
+                text = text.replaceAll(city, (cityName + " (" + arrayOfStrings[cityName].rating + " место в ТОП-10 " +
                     "самых крупных городов Украины, население " +
                     arrayOfStrings[cityName].population + " человек" + " )"));
             }
